@@ -1,0 +1,46 @@
+# EditorConfig: https://editorconfig.org
+# Root configuration for tft-comp-decider
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# Python follows PEP 8 → 4 spaces
+[*.py]
+indent_style = space
+indent_size = 4
+
+# YAML prefers 2 spaces
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# TOML/JSON: compact 2 spaces
+[*.{toml,json}]
+indent_style = space
+indent_size = 2
+
+# Markdown: keep trailing spaces (they matter for line breaks)
+[*.md]
+trim_trailing_whitespace = false
+indent_style = space
+indent_size = 2
+
+# Makefile requires tabs
+[Makefile]
+indent_style = tab
+
+# Shell scripts
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+
+# INI-like files (including this one)
+[*.{ini,editorconfig}]
+indent_style = space
+indent_size = 2

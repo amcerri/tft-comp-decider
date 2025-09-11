@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tft-comp-decider"
+version = "0.1.0"
+description = "TFT composition decider with stage-aware scoring and Streamlit UI."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Your Name" }
+]
+dependencies = [
+  "pydantic>=2.6,<3.0",
+  "PyYAML>=6.0.1,<7.0",
+  "structlog>=24,<25",
+  "streamlit>=1.33,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.5.5,<1.0",
+  "black>=24.3,<25.0",
+  "mypy>=1.9,<2.0",
+  "pytest>=8.0,<9.0",
+  "types-PyYAML>=6.0.12.20240808",
+]
+
+[project.urls]
+Repository = "https://github.com/USERNAME/tft-comp-decider"
+Issues = "https://github.com/USERNAME/tft-comp-decider/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["tft_decider*"]
+exclude = ["tests*"]
+
+# Ruff configuration (using the new 0.5+ table layout)
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "D"]
+ignore = [
+  "D203",  # one-blank-line-before-class (we use D211)
+  "D213",  # multi-line-summary-second-line
+  "D401",  # imperative mood rule is enforced by review
+]
+per-file-ignores = {"tests/*" = ["D"]}
+
+[tool.ruff.lint.isort]
+known-first-party = ["tft_decider"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+packages = ["tft_decider"]
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_return_any = true
+disallow_any_generics = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+no_implicit_optional = true
+show_error_codes = true
+pretty = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
