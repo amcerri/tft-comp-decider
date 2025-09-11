@@ -1,0 +1,97 @@
+# TFT catalog for patch 15.4 (EN)
+# Minimal, hand-maintained list suitable for the UI selectors.
+# This file is intentionally conservative: it includes the 8 base components
+# and a small, stable subset of completed items/augments/traits that are
+# common across sets. Expand as you see fit.
+
+patch: "15.4"
+language: "en"
+
+champions:
+  # Sample subset (expand as needed)
+  - Xayah
+  - Rakan
+  - Janna
+  - Neeko
+  - Yasuo
+  - K'Sante
+  - Gnar
+  - Kennen
+  - Malphite
+  - Sivir
+  - Jhin
+  - Jinx
+  - Shen
+
+items_components:
+  # The 8 base components
+  - B. F. Sword
+  - Recurve Bow
+  - Needlessly Large Rod
+  - Tear of the Goddess
+  - Chain Vest
+  - Negatron Cloak
+  - Giant's Belt
+  - Sparring Gloves
+
+items_completed:
+  # Stable, commonly known recipes (across many sets)
+  - name: Giant Slayer
+    components: [B. F. Sword, Recurve Bow]
+  - name: Guinsoo's Rageblade
+    components: [Recurve Bow, Needlessly Large Rod]
+  - name: Last Whisper
+    components: [Recurve Bow, Sparring Gloves]
+  - name: Rapid Firecannon
+    components: [Recurve Bow, Recurve Bow]
+  - name: Bloodthirster
+    components: [B. F. Sword, Negatron Cloak]
+  - name: Spear of Shojin
+    components: [B. F. Sword, Tear of the Goddess]
+  - name: Infinity Edge
+    components: [B. F. Sword, Sparring Gloves]
+  - name: Hand of Justice
+    components: [Tear of the Goddess, Sparring Gloves]
+  - name: Blue Buff
+    components: [Tear of the Goddess, Tear of the Goddess]
+  - name: Statikk Shiv
+    components: [Recurve Bow, Tear of the Goddess]
+  - name: Rabadon's Deathcap
+    components: [Needlessly Large Rod, Needlessly Large Rod]
+  - name: Hextech Gunblade
+    components: [B. F. Sword, Needlessly Large Rod]
+  - name: Jeweled Gauntlet
+    components: [Needlessly Large Rod, Sparring Gloves]
+  - name: Ionic Spark
+    components: [Needlessly Large Rod, Negatron Cloak]
+  - name: Bramble Vest
+    components: [Chain Vest, Chain Vest]
+  - name: Dragon's Claw
+    components: [Negatron Cloak, Negatron Cloak]
+  - name: Gargoyle Stoneplate
+    components: [Chain Vest, Negatron Cloak]
+  - name: Sunfire Cape
+    components: [Chain Vest, Giant's Belt]
+  - name: Warmog's Armor
+    components: [Giant's Belt, Giant's Belt]
+  - name: Runaan's Hurricane
+    components: [Recurve Bow, Negatron Cloak]
+  - name: Titan's Resolve
+    components: [Chain Vest, Recurve Bow]
+  - name: Quicksilver
+    components: [Negatron Cloak, Sparring Gloves]
+
+augments:
+  # Augments are used only for notes/banners; they do not affect the score
+  - Double Trouble II
+  - Double Trouble III
+  - Jeweled Lotus
+  - Thrill of the Hunt
+
+traits:
+  - name: Sniper
+    breakpoints: [2, 4, 6]
+  - name: Duelist
+    breakpoints: [2, 4, 6, 8]
+  - name: Star Guardian
+    breakpoints: [3, 5, 7]
