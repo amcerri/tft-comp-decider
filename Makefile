@@ -14,6 +14,8 @@ MYPY := $(VENV)/bin/mypy
 PYTEST := $(VENV)/bin/pytest
 STREAMLIT := $(VENV)/bin/streamlit
 
+DATA_DIR ?= $(CURDIR)/data
+
 APP := src/tft_decider/ui/app.py
 PKG := tft_decider
 
@@ -49,7 +51,8 @@ check: lint typecheck test ## Run lint, typecheck, and tests
 	@echo "✅ all checks passed"
 
 run: ## Run the Streamlit app
-	$(STREAMLIT) run $(APP)
+	@echo "ℹ️  Using data dir: $(DATA_DIR) (override with TFT_DATA_DIR or make DATA_DIR=...)"
+	TFT_DATA_DIR="$(DATA_DIR)" "$(STREAMLIT)" run "$(APP)"
 
 freeze: ## Export an environment lock file (requirements.txt)
 	$(PIP) freeze > requirements.txt

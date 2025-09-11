@@ -14,6 +14,7 @@ A stage‑aware **Teamfight Tactics** composition decider with a transparent sco
     - [Builds](#builds)
   - [Scoring (high level)](#scoring-high-level)
   - [UI (Streamlit)](#ui-streamlit)
+  - [Troubleshooting](#troubleshooting)
   - [Development](#development)
   - [Logging](#logging)
   - [Contributing](#contributing)
@@ -167,6 +168,38 @@ Key actions in the UI:
 - See **Top N** suggestions with scores, links to external guides, and **banners** with pivot suggestions.
 
 ---
+
+## Troubleshooting
+
+**Can't load catalog or builds (file not found)?**
+- Paths are resolved relative to the code. By default the app expects:
+  - Catalog: `data/catalog/15.4_en.yaml`
+  - Builds dir: `data/builds/`
+- If your data lives elsewhere, set an absolute path via the environment variable:
+  ```bash
+  TFT_DATA_DIR=/absolute/path/to/data streamlit run src/tft_decider/ui/app.py
+  # or with make
+  TFT_DATA_DIR=/absolute/path/to/data make run
+  ```
+  On PowerShell (Windows):
+  ```powershell
+  $env:TFT_DATA_DIR="C:\\path\\to\\data"; streamlit run src/tft_decider/ui/app.py
+  ```
+
+**Verify files exist**
+```bash
+ls -la data/catalog/15.4_en.yaml
+ls -la data/builds/
+```
+
+**Port already in use?**
+```bash
+streamlit run src/tft_decider/ui/app.py --server.port 8502
+```
+
+**Telemetry prompt / watchdog note**
+- The first run may show a telemetry prompt; it is safe to skip.
+- For faster file watching, you can install watchdog: `pip install watchdog`.
 
 ## Development
 
