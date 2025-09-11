@@ -15,6 +15,9 @@ Design
 - Keep this module self-contained; depend only on stdlib + pydantic + yaml and
   the previously created internal modules (types, exceptions, logging).
 - Expose tiny helper functions to retrieve available champions and components.
+- (Extended) Optionally provide ``champions_index`` with per-champion metadata
+  (cost and traits) to enable richer UI filters. Backward compatible with the
+  simpler ``champions: list[str]`` representation.
 
 Integration
 -----------
@@ -32,7 +35,6 @@ Usage
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import Final, Optional
 
 import yaml
@@ -43,7 +45,6 @@ from tft_decider.core.types import (
     ChampionName,
     ComponentName,
     CompletedItemName,
-    StageString,
     TraitName,
 )
 from tft_decider.core.exceptions import CatalogLoadError, CatalogValidationError
@@ -52,18 +53,22 @@ from tft_decider.infra.logging import logger_for, generate_thread_id
 __all__: Final[list[str]] = [
     "CompletedItem",
     "Trait",
+    "Champion",
     "Catalog",
     "load_catalog_from_yaml",
     "available_champions",
     "available_components",
     "available_augments",
     "available_traits",
+    "available_costs",
+    "available_champion_traits",
 ]
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 def _normalize_name(value: str) -> str:
     """Normalize a domain name by trimming and removing a trailing '*'.
@@ -74,7 +79,6 @@ def _normalize_name(value: str) -> str:
     Returns:
         A clean, canonical string.
     """
-
     value = (value or "").strip()
     if value.endswith("*"):
         value = value[:-1].rstrip()
@@ -83,7 +87,6 @@ def _normalize_name(value: str) -> str:
 
 def _unique_preserve_order(values: list[str]) -> list[str]:
     """Return values deduplicated while preserving the original order."""
-
     out: list[str] = []
     seen: set[str] = set()
     for v in values:
@@ -96,6 +99,8 @@ def _unique_preserve_order(values: list[str]) -> list[str]:
 # ---------------------------------------------------------------------------
 # Models
 # ---------------------------------------------------------------------------
+
+
 class CompletedItem(BaseModel):
     """Describe a completed item and the components that craft it."""
 
@@ -137,6 +142,28 @@ class Trait(BaseModel):
         return sorted(set(out))
 
 
+class Champion(BaseModel):
+    """Represent a champion with optional cost and traits metadata.
+
+    The model is intentionally permissive to support partial catalogs.
+    """
+
+    name: ChampionName
+    cost: int = Field(default=1, ge=1, le=10)
+    traits: list[TraitName] = Field(default_factory=list)
+
+    @field_validator("name")
+    @classmethod
+    def _v_name(cls, v: str) -> str:
+        return _normalize_name(v)
+
+    @field_validator("traits")
+    @classmethod
+    def _v_traits(cls, values: list[str]) -> list[str]:
+        cleaned = [x for x in (_normalize_name(v) for v in (values or [])) if x]
+        return _unique_preserve_order(cleaned)
+
+
 class Catalog(BaseModel):
     """Represent a patch-pinned catalog of domain entities.
 
@@ -144,6 +171,7 @@ class Catalog(BaseModel):
         patch: Patch string (e.g., ``"15.4"``).
         language: Language code (e.g., ``"en"``).
         champions: All champions available in the patch.
+        champions_index: Optional list of champions with metadata (cost, traits).
         items_components: All base components (e.g., "Recurve Bow").
         items_completed: Optional completed items with component composition.
         augments: Optional list of augment names.
@@ -153,6 +181,7 @@ class Catalog(BaseModel):
     patch: str
     language: str
     champions: list[ChampionName] = Field(default_factory=list)
+    champions_index: list[Champion] = Field(default_factory=list)
     items_components: list[ComponentName] = Field(default_factory=list)
     items_completed: list[CompletedItem] = Field(default_factory=list)
     augments: list[AugmentName] = Field(default_factory=list)
@@ -188,6 +217,7 @@ class Catalog(BaseModel):
 # Loader & accessors
 # ---------------------------------------------------------------------------
 
+
 def load_catalog_from_yaml(path: str, *, thread_id: Optional[str] = None) -> Catalog:
     """Load and validate a catalog YAML file.
 
@@ -202,7 +232,6 @@ def load_catalog_from_yaml(path: str, *, thread_id: Optional[str] = None) -> Cat
         CatalogLoadError: When the file cannot be read or parsed.
         CatalogValidationError: When the YAML structure fails validation.
     """
-
     log = logger_for(component="data.catalog", event="load", thread_id=thread_id or generate_thread_id())
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -224,30 +253,65 @@ def load_catalog_from_yaml(path: str, *, thread_id: Optional[str] = None) -> Cat
         log.error("Catalog validation error", path=path, error=str(exc))
         raise CatalogValidationError(errors=[str(exc)]) from exc
 
-    log.info("Catalog loaded", path=path, patch=catalog.patch, language=catalog.language,
-             champions=len(catalog.champions), components=len(catalog.items_components))
+    log.info(
+        "Catalog loaded",
+        path=path,
+        patch=catalog.patch,
+        language=catalog.language,
+        champions=len(catalog.champions),
+        components=len(catalog.items_components),
+        champions_index=len(catalog.champions_index),
+    )
     return catalog
 
 
 def available_champions(catalog: Catalog) -> list[ChampionName]:
-    """Return the list of champions from the catalog (deduplicated)."""
+    """Return the list of champions (fallback to index when needed).
 
-    return list(catalog.champions)
+    The catalog may omit the legacy ``champions`` list and provide only the
+    richer ``champions_index`` (canonical). This helper returns a simple list of
+    names regardless of representation.
+    """
+    if catalog.champions:
+        return list(catalog.champions)
+    if catalog.champions_index:
+        return [c.name for c in catalog.champions_index]
+    return []
 
 
 def available_components(catalog: Catalog) -> list[ComponentName]:
     """Return the list of item components from the catalog (deduplicated)."""
-
     return list(catalog.items_components)
 
 
 def available_augments(catalog: Catalog) -> list[AugmentName]:
     """Return the list of augments from the catalog (may be empty)."""
-
     return list(catalog.augments)
 
 
 def available_traits(catalog: Catalog) -> list[TraitName]:
     """Return the list of trait names from the catalog (may be empty)."""
-
     return [t.name for t in catalog.traits]
+
+
+def available_costs(catalog: Catalog) -> list[int]:
+    """Return distinct champion costs from ``champions_index`` (sorted).
+
+    Returns an empty list if the index is not provided.
+    """
+    costs = sorted({c.cost for c in catalog.champions_index})
+    return costs
+
+
+def available_champion_traits(catalog: Catalog) -> list[TraitName]:
+    """Return distinct champion traits from ``champions_index`` (sorted).
+
+    Falls back to catalog-level traits if the index is empty.
+    """
+    traits: set[str] = set()
+    for c in catalog.champions_index:
+        for t in c.traits:
+            traits.add(t)
+    if not traits:
+        return sorted(set(available_traits(catalog)))
+    return sorted(traits)

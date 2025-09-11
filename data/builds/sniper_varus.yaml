@@ -1,0 +1,80 @@
+# Sniper Varus — build definition
+# All strings in English. Names must match the catalog entries.
+
+id: "sniper_varus"
+name: "Sniper Varus"
+tier: "A"
+tier_rank: 8
+patch: "15.4"
+
+core_units:
+  - name: "Varus"
+    star_goal: 2
+    required: true
+  - name: "Jinx"
+    star_goal: 2
+    required: false
+  - name: "Poppy"
+    star_goal: 2
+    required: false
+
+# Playstyle: Snipers + Bastions. Fast 8 for Jinx2/Poppy2; always play Varus.
+early_comp:
+  - "Gnar"
+  - "Kennen"
+  - "Malphite"
+  - "Sivir"
+
+mid_comp:
+  - "Varus"
+  - "Jinx"
+  - "Poppy"
+  - "Braum"
+  - "Gnar"
+  - "Kennen"
+  - "Sivir"
+
+late_comp:
+  # Snipers backline with Bastion frontline; flex final slot at 8/9.
+  - "Varus"
+  - "Jinx"
+  - "Jhin"
+  - "Sivir"
+  - "Poppy"
+  - "Braum"
+  - "K'Sante"
+  - "Gnar"
+
+# Item Priority (components). Duplicates reflect craft pressure for IE/LW/GS.
+item_priority_components:
+  - "B. F. Sword"           # Infinity Edge
+  - "Sparring Gloves"       # Infinity Edge
+  - "Recurve Bow"           # Last Whisper / Giant Slayer
+  - "Sparring Gloves"       # Last Whisper
+  - "Recurve Bow"           # Giant Slayer
+  - "B. F. Sword"           # Giant Slayer / IE variants
+
+bis_items:
+  "Varus": ["Infinity Edge", "Last Whisper", "Giant Slayer"]
+  "Jinx": ["Guinsoo's Rageblade", "Giant Slayer", "Runaan's Hurricane"]
+  "Jhin": ["Deathblade", "Infinity Edge", "Giant Slayer"]
+  "Poppy": ["Gargoyle Stoneplate", "Bramble Vest", "Warmog's Armor"]
+  "Braum": ["Gargoyle Stoneplate", "Warmog's Armor", "Dragon's Claw"]
+
+links:
+  - label: "TFT Academy Guide"
+    url: "https://tftacademy.com/tierlist/comps/set-15-sniper-varus"
+
+notes:
+  - severity: "info"
+    text: "Stage 2: play around early Snipers and Bastions. Gnar 2 > Sivir 2, but itemize whoever upgrades first."
+    triggers:
+      stage_min: "2-1"
+  - severity: "info"
+    text: "Stage 3: flex in more frontline; when in doubt, add tanks over extra damage. Econ up for Fast 8."
+    triggers:
+      stage_min: "3-2"
+  - severity: "warning"
+    text: "Stage 4: level to 8 and roll for Jinx 2 and Poppy 2. Always play Varus. Once stable, go 9 for 5-costs."
+    triggers:
+      stage_min: "4-1"

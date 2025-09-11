@@ -1,0 +1,78 @@
+# Jujutsu Kaisa (OK) — build definition
+# All strings in English. Names must match the catalog entries.
+
+id: "jujutsu_kaisa_ok"
+name: "Jujutsu Kaisa (OK)"
+tier: "A"
+tier_rank: 4
+patch: "15.4"
+
+core_units:
+  - name: "Kai'Sa"
+    star_goal: 3
+    required: true
+  - name: "Rammus"
+    star_goal: 3
+    required: false
+  - name: "Darius"
+    star_goal: 2
+    required: false
+
+# Playstyle: 2-cost slowroll into Kai'Sa 3; transition to 4 Supreme Cells on 7.
+early_comp:
+  - "Kai'Sa"
+  - "Rammus"
+  - "Darius"
+  - "Kennen"
+
+mid_comp:
+  - "Kai'Sa"
+  - "Rammus"
+  - "Darius"
+  - "Kennen"
+  - "Udyr"
+  - "Aatrox"
+
+late_comp:
+  # Aim for 4 Supreme Cells with sturdy frontline; 8th slot is flexible.
+  - "Kai'Sa"
+  - "Darius"
+  - "Kennen"
+  - "Akali"
+  - "Rammus"
+  - "Udyr"
+  - "Aatrox"
+  - "Lee Sin"
+
+# Prioritize IE + Shojin + LW for Kai'Sa (duplicates included for crafting order).
+item_priority_components:
+  - "B. F. Sword"           # Infinity Edge
+  - "Sparring Gloves"       # Infinity Edge
+  - "Tear of the Goddess"   # Spear of Shojin
+  - "B. F. Sword"           # Spear of Shojin
+  - "Recurve Bow"           # Last Whisper
+  - "Sparring Gloves"       # Last Whisper
+
+bis_items:
+  "Kai'Sa": ["Spear of Shojin", "Infinity Edge", "Last Whisper"]
+  "Rammus": ["Gargoyle Stoneplate", "Warmog's Armor", "Dragon's Claw"]
+  "Darius": ["Infinity Edge", "Edge of Night", "Sterak's Gage"]
+  "Akali": ["Rabadon's Deathcap", "Jeweled Gauntlet", "Hand of Justice"]
+
+links:
+  - label: "TFT Academy Guide"
+    url: "https://tftacademy.com/tierlist/comps/set-15-jujutsu-kaisa-ok"
+
+notes:
+  - severity: "info"
+    text: "Need Kai'Sa by early Stage 2 to start stacking permanent AD. Stack on enemy weak side to secure kills."
+    triggers:
+      stage_min: "2-1"
+  - severity: "info"
+    text: "Roll on 3-2 for Kai'Sa 2 and a stable frontline. Play Rammus ASAP to start Monster Trainer EXP."
+    triggers:
+      stage_min: "3-2"
+  - severity: "warning"
+    text: "After hitting Kai'Sa 3, roll on 7 for Rammus 3 and 4 Supreme Cells. Position on same side as enemy carry."
+    triggers:
+      stage_min: "4-1"

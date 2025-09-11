@@ -1,0 +1,78 @@
+# Dunkmaster Darius (Fusion-HA!) — build definition
+# All strings in English. Names must match the catalog entries.
+
+id: "dunkmaster_darius"
+name: "Dunkmaster Darius (Fusion-HA!)"
+tier: "A"
+tier_rank: 7
+patch: "15.4"
+
+core_units:
+  - name: "Darius"
+    star_goal: 3
+    required: true
+  - name: "Jayce"
+    star_goal: 2
+    required: false
+  - name: "Poppy"
+    star_goal: 2
+    required: false
+
+# Playstyle: 3‑cost reroll around Darius with 6 Heavyweights; Smolder as backline carry.
+early_comp:
+  - "Darius"
+  - "Gangplank"
+  - "Kobuko"
+  - "Yasuo"
+
+mid_comp:
+  - "Darius"
+  - "Jayce"
+  - "Kobuko"
+  - "Aatrox"
+  - "Poppy"
+  - "Gangplank"
+
+late_comp:
+  # Aim for 6 Heavyweights + Smolder at level 7/8; 8th slot is flexible utility.
+  - "Darius"     # Heavyweight / Supreme Cells
+  - "Jayce"      # Heavyweight / Battle Academia
+  - "Aatrox"     # Heavyweight / Mighty Mech
+  - "Poppy"      # Heavyweight / Star Guardian
+  - "Kobuko"     # Heavyweight / Mentor
+  - "Zac"        # Heavyweight / Wraith
+  - "Smolder"    # Backline burn carry
+  - "Lee Sin"    # Flex utility / Duelist
+
+# Item Priority (components) — aligns with TFT Academy icons; duplicates reflect craft pressure.
+item_priority_components:
+  - "B. F. Sword"           # Infinity Edge / Sterak's / Bloodthirster
+  - "Sparring Gloves"       # Infinity Edge / Hand of Justice
+  - "Giant's Belt"          # Sterak's Gage / Warmog's Armor
+  - "Recurve Bow"           # Titan's Resolve / Giant Slayer
+  - "B. F. Sword"           # Second BF for IE/BT/Sterak's lines
+  - "Giant's Belt"          # Second Belt for Sterak's/Warmog's
+
+bis_items:
+  "Darius": ["Sterak's Gage", "Bloodthirster", "Titan's Resolve"]
+  "Jayce": ["Deathblade", "Hand of Justice", "Sterak's Gage"]
+  "Smolder": ["Guinsoo's Rageblade", "Giant Slayer", "Last Whisper"]
+  "Poppy": ["Gargoyle Stoneplate", "Warmog's Armor", "Bramble Vest"]
+
+links:
+  - label: "TFT Academy Guide"
+    url: "https://tftacademy.com/tierlist/comps/set-15-dunkmaster-darius"
+
+notes:
+  - severity: "info"
+    text: "Stage 2: play around a strong AD opener around Darius; slam items aggressively and play for winstreak."
+    triggers:
+      stage_min: "2-1"
+  - severity: "info"
+    text: "Stage 3: level to 6 @ 3-2 for more Heavyweights or Duelists to support Gangplank. If you have pairs of key units, consider a small roll to stabilize."
+    triggers:
+      stage_min: "3-2"
+  - severity: "warning"
+    text: "Stage 4: level to 7 and roll for 2★ Darius, 2★ Smolder, and 6 Heavyweight. Econ up and slow roll for 3★. Use Power Snax for Fusion Dance; give leftover swords to Jayce."
+    triggers:
+      stage_min: "4-1"

@@ -1,12 +1,10 @@
-
-
 # Double Trouble Fan Service — example build definition
 # Note: All strings are in English. Champion names and item names should match the catalog.
 
 id: double_trouble_fan_service
 name: "Double Trouble Fan Service"
-tier: "A"
-tier_rank: 2
+tier: "S"
+tier_rank: 1
 patch: "15.4"
 
 core_units:
@@ -28,6 +26,7 @@ mid_comp:
   - "Rakan"
   - "Janna"
   - "Neeko"
+  - "Yasuo"
 
 late_comp:
   - "Janna"
@@ -46,22 +45,20 @@ item_priority_components:
   - "B. F. Sword"
 
 bis_items:
-  "Xayah": ["Guinsoo's Rageblade", "Last Whisper", "Giant Slayer"]
-  "Rakan": ["Protector's Vow", "Bramble Vest", "Dragon's Claw"]
+  "Xayah": ["Guinsoo's Rageblade", "Kraken's Fury", "Giant Slayer"]
+  "Rakan": ["Archangel's Staff", "Titan's Resolve", "Gargoyle Stoneplate"]
 
 links:
-  - label: "Guide (example)"
-    url: "https://example.com/double-trouble-fan-service"
-  - label: "Video (example)"
-    url: "https://example.com/video-double-trouble"
+  - label: "TFT Academy Guide"
+    url: "https://tftacademy.com/tierlist/comps/set-15-double-trouble-fan-service"
 
 notes:
   - severity: "critical"
-    text: "Without Double Trouble, consider pivoting to Sniper Squad."
+    text: "Must have Double Trouble augment, ignore this recommendation otherwise."
     triggers:
       missing_augments_any: ["Double Trouble II", "Double Trouble III"]
       stage_min: "3-2"
-      suggest_pivot_to: "sniper_squad"
+      suggest_pivot_to: ""
   - severity: "info"
     text: "If you hit an early Bow, prioritize Guinsoo's on Xayah."
     triggers:

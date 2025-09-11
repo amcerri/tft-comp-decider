@@ -1,0 +1,80 @@
+# Mentor Mech (Fast 8/9) — build definition
+# All strings in English. Names must match the catalog entries.
+
+id: "mentor_mech_fast9"
+name: "Mentor Mech (Fast 9)"
+tier: "A"
+tier_rank: 3
+patch: "15.4"
+
+core_units:
+  - name: "Ryze"
+    star_goal: 2
+    required: true
+  - name: "Senna"
+    star_goal: 2
+    required: true
+  - name: "Aatrox"
+    star_goal: 2
+    required: false
+
+early_comp:
+  # Mech opener around Lucian 2; you can slam AD items on Yasuo/Gangplank.
+  - "Lucian"
+  - "Yasuo"
+  - "Gangplank"
+  - "Kobuko"
+
+mid_comp:
+  - "Lucian"
+  - "Yasuo"
+  - "Gangplank"
+  - "Kobuko"
+  - "Aatrox"
+  - "Senna"
+  - "Ryze"
+  - "Udyr"
+
+late_comp:
+  # Flexible 8th slot examples include Volibear, Akali, Lee Sin, Zyra, Yone.
+  - "Ryze"
+  - "Senna"
+  - "Aatrox"
+  - "Yasuo"
+  - "Udyr"
+  - "Volibear"
+  - "Lee Sin"
+  - "Zyra"
+
+# Prioritize components to enable Archangel (Ryze) + LW/IE line for Senna,
+# then Shojin to round out either carry.
+item_priority_components:
+  - "Tear of the Goddess"   # Archangel (Ryze)
+  - "Needlessly Large Rod"  # Archangel (Ryze)
+  - "Recurve Bow"           # Last Whisper / Giant Slayer (Senna)
+  - "Sparring Gloves"       # Last Whisper / Infinity Edge (Senna)
+  - "Tear of the Goddess"   # Spear of Shojin
+  - "B. F. Sword"           # Spear of Shojin
+
+bis_items:
+  "Ryze": ["Archangel's Staff", "Spear of Shojin", "Void Staff"]
+  "Senna": ["Infinity Edge", "Last Whisper", "Giant Slayer"]
+  "Aatrox": ["Gargoyle Stoneplate", "Warmog's Armor", "Dragon's Claw"]
+
+links:
+  - label: "TFT Academy Guide"
+    url: "https://tftacademy.com/tierlist/comps/set-15-mentor-mecha-fast-9"
+
+notes:
+  - severity: "info"
+    text: "Play around a winstreak Mech opener, preferably Lucian 2 with AP items. Alternatively, slam AD Fighter items on Yasuo/Gangplank."
+    triggers:
+      stage_min: "2-1"
+  - severity: "info"
+    text: "At level 6 (Stage 3), add a Mentor. Your second Fruit should look for Socialite on Aatrox (see Tips)."
+    triggers:
+      stage_min: "3-2"
+  - severity: "warning"
+    text: "Level 8 and roll for Senna 2 and Ryze 2 with 4 Mentor. The 8th slot is flexible (Volibear, Akali, Lee Sin, Zyra, Yone). Go 9 once stable."
+    triggers:
+      stage_min: "4-1"
