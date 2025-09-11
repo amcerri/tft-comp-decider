@@ -1,0 +1,72 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Virtual environments and Python version files
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Packaging artifacts
+build/
+dist/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+# Tool caches and reports
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.pyre/
+.pytype/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Streamlit local state and secrets (do not commit secrets)
+.streamlit/secrets.toml
+.streamlit/state.json
+.streamlit/**/logs/
+.streamlit/**/cache/
+.streamlit/**/static/
+
+# Logs and temp files
+logs/
+log/
+*.log
+.cache/
+tmp/
+temp/
+
+# Editors/IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Data caches (keep versioned YAMLs for builds and catalog)
+cache/
+assets/generated/
+data/**/*.cache
+data/**/.cache
+data/**/cache/
+!data/builds/*.yaml
+!data/catalog/*.yaml
+
+# Notebooks
+.ipynb_checkpoints/
