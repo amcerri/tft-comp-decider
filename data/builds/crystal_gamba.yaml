@@ -1,0 +1,79 @@
+# Crystal Gamba (Ashe Zyra) — build definition
+# All strings in English. Names must match the catalog entries.
+
+id: "crystal_gamba"
+name: "Crystal Gamba (Ashe Zyra)"
+tier: "A"
+tier_rank: 5
+patch: "15.4"
+
+core_units:
+  - name: "Ashe"
+    star_goal: 2
+    required: true
+  - name: "Zyra"
+    star_goal: 1
+    required: false
+  - name: "Swain"
+    star_goal: 2
+    required: false
+
+# Playstyle: Lose streak, cash out early, then farm kills at 5/7 Crystal Gambit.
+early_comp:
+  - "Syndra"
+  - "Janna"
+  - "Vi"
+  - "Swain"
+
+mid_comp:
+  - "Ashe"
+  - "Swain"
+  - "Vi"
+  - "Janna"
+  - "Syndra"
+  - "Braum"
+
+late_comp:
+  # 7 Crystal Gambit core with flexible frontline slots (see notes).
+  - "Ashe"
+  - "Zyra"
+  - "Swain"
+  - "Vi"
+  - "Janna"
+  - "Syndra"
+  - "Braum"
+  - "Udyr"
+
+# Prioritize components based on TFT Academy icons: Guinsoo -> Runaan -> BF -> Rod.
+# Include duplicates to reflect crafting order pressure.
+item_priority_components:
+  - "Recurve Bow"           # Guinsoo's Rageblade
+  - "Needlessly Large Rod"  # Guinsoo's Rageblade
+  - "Recurve Bow"           # Runaan's Hurricane
+  - "Negatron Cloak"        # Runaan's Hurricane
+  - "B. F. Sword"           # Infinity Edge / Edge of Night
+  - "Needlessly Large Rod"  # AP spike for Zyra or secondary Guinsoo
+
+bis_items:
+  "Ashe": ["Guinsoo's Rageblade", "Runaan's Hurricane", "Infinity Edge"]
+  "Zyra": ["Rabadon's Deathcap", "Jeweled Gauntlet", "Spear of Shojin"]
+  "Swain": ["Gargoyle Stoneplate", "Warmog's Armor", "Dragon's Claw"]
+  "Braum": ["Gargoyle Stoneplate", "Bramble Vest", "Warmog's Armor"]
+
+links:
+  - label: "TFT Academy Guide"
+    url: "https://tftacademy.com/tierlist/comps/set-15-crystal-gamba"
+
+notes:
+  - severity: "info"
+    text: "Most games, play for a controlled lose streak Crystal Gambit. If you start your streak on 2-3, you can avoid the Double Down grief on Stage 2."
+    triggers:
+      stage_min: "2-1"
+  - severity: "info"
+    text: "If you are healthy after 4 losses and uncontested, Double Down on Stage 3. After cashing out, aim for 5 Crystal kill rewards to snowball."
+    triggers:
+      stage_min: "3-2"
+  - severity: "warning"
+    text: "Play 7 Crystal Gambit when possible and farm kills for cashouts. Frontline is flexible: Udyr, K'Sante, Jarvan IV, Braum/Dr. Mundo are all solid choices."
+    triggers:
+      stage_min: "4-1"

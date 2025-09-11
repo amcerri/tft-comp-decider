@@ -1,0 +1,79 @@
+# Soul Society (Samira Carry) — build definition
+# All strings in English. Names must match the catalog entries.
+
+id: "soul_society_samira"
+name: "Soul Society (Samira Carry)"
+tier: "A"
+tier_rank: 2
+patch: "15.4"
+
+core_units:
+  - name: "Samira"
+    star_goal: 2
+    required: true
+  - name: "Sett"
+    star_goal: 2
+    required: true
+  - name: "Gwen"
+    star_goal: 1
+    required: false
+
+early_comp:
+  - "Kalista"
+  - "Naafiri"
+  - "Xin Zhao"
+  - "Udyr"
+
+mid_comp:
+  - "Kalista"
+  - "Naafiri"
+  - "Xin Zhao"
+  - "Udyr"
+  - "Lux"
+  - "Viego"
+  - "Sett"
+  - "Samira"
+
+late_comp:
+  - "Kalista"
+  - "Naafiri"
+  - "Lux"
+  - "Xin Zhao"
+  - "Udyr"
+  - "Viego"
+  - "Samira"
+  - "Sett"
+  - "Gwen"
+
+# Prioritize components that build Shojin and IE first, then survivability/crit
+# (derived from TFT Academy's item priority icons for Soul Society)
+item_priority_components:
+  - "B. F. Sword"           # Shojin / Infinity Edge
+  - "Tear of the Goddess"   # Spear of Shojin
+  - "B. F. Sword"           # Shojin / Infinity Edge
+  - "Sparring Gloves"       # Infinity Edge
+  - "Giant's Belt"          
+  - "Sparring Gloves"       
+
+bis_items:
+  "Samira": ["Infinity Edge", "Spear of Shojin", "Last Whisper"]
+  "Sett": ["Gargoyle Stoneplate", "Warmog's Armor", "Spirit Visage"]
+  "Gwen": ["Rabadon's Deathcap", "Jeweled Gauntlet", "Hextech Gunblade"]
+
+links:
+  - label: "TFT Academy Guide"
+    url: "https://tftacademy.com/tierlist/comps/set-15-soul-mira"
+
+notes:
+  - severity: "info"
+    text: "Play for winstreak. Use Naafiri and Kalista as early item holders for Sett (tank) and Samira (carry)."
+    triggers:
+      stage_min: "2-1"
+  - severity: "info"
+    text: "At level 6–7, add Soul Fighters (Xin Zhao, Lux, Viego). Roll a bit if you have pairs of key units to stabilize."
+    triggers:
+      stage_min: "3-2"
+  - severity: "warning"
+    text: "Go level 8 and roll for Samira, Sett, and 8 Soul Fighter. Any Gwen spike greatly increases your cap."
+    triggers:
+      stage_min: "4-1"

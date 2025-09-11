@@ -40,17 +40,43 @@ __all__: Final[list[str]] = [
     "SECTION_COMPONENTS",
     "SECTION_AUGMENTS",
     "SECTION_FORCED_BUILD",
+    "RUN_OPTIONS",
+    "SECTION_FILTERS",
+    "FILTER_COSTS",
+    "FILTER_TRAITS",
+    "SECTION_COMPONENTS_OWNED",
+    "SECTION_SELECTION_SUMMARY",
+    "SECTION_OWNED_CHAMPIONS",
     "TITLE_TOP_BUILDS",
     "TITLE_FORCED_BUILD",
     "TITLE_DETAILS",
     "TITLE_LINKS",
     "TITLE_NOTES",
+    "TITLE_BUILD_DETAILS",
+    "LABEL_CORE_UNITS",
+    "LABEL_EARLY_COMP",
+    "LABEL_MID_COMP",
+    "LABEL_FINAL_COMP",
+    "LABEL_FULL_COMP",
+    "LABEL_ITEM_PRIORITY",
+    "BADGE_CORE",
+    "LABEL_COMPONENTS_INCLUDED",
+    "LABEL_COMPONENTS_MISSING",
+    "LABEL_COMPONENTS_LEFTOVER",
+    "SECTION_LEGEND",
+    "LEGEND_HAVE",
+    "LEGEND_MISSING",
+    "SECTION_COMPONENTS_COVERAGE",
     # Buttons / actions
     "BTN_FORCE",
     "BTN_OPEN_GUIDE",
     "BTN_OPEN_VIDEO",
+    "BTN_INC",
+    "BTN_DEC",
     # Banners & misc
     "SEVERITY_EMOJI",
+    "HINT_CLICK_TO_ADD",
+    "HINT_CHAMPIONS_ADD_ONLY",
     "format_score_summary",
     "format_assignment_summary",
     "format_percentage",
@@ -69,12 +95,34 @@ SECTION_CHAMPIONS: Final[str] = "Champions"
 SECTION_COMPONENTS: Final[str] = "Item components"
 SECTION_AUGMENTS: Final[str] = "Augments (for notes only)"
 SECTION_FORCED_BUILD: Final[str] = "Force build"
+RUN_OPTIONS: Final[str] = "Run options"
+SECTION_FILTERS: Final[str] = "Filters"
+FILTER_COSTS: Final[str] = "Costs"
+FILTER_TRAITS: Final[str] = "Traits"
+SECTION_COMPONENTS_OWNED: Final[str] = "Owned components"
+SECTION_SELECTION_SUMMARY: Final[str] = "Your selection"
+SECTION_OWNED_CHAMPIONS: Final[str] = "Owned champions"
 
 TITLE_TOP_BUILDS: Final[str] = "Top builds for your setup"
 TITLE_FORCED_BUILD: Final[str] = "Forced build"
 TITLE_DETAILS: Final[str] = "Details"
 TITLE_LINKS: Final[str] = "Links"
 TITLE_NOTES: Final[str] = "Notes & banners"
+TITLE_BUILD_DETAILS: Final[str] = "Build details"
+LABEL_CORE_UNITS: Final[str] = "Core units"
+LABEL_EARLY_COMP: Final[str] = "Early comp"
+LABEL_MID_COMP: Final[str] = "Mid comp"
+LABEL_FINAL_COMP: Final[str] = "Final comp"
+LABEL_FULL_COMP: Final[str] = "Full comp"
+LABEL_ITEM_PRIORITY: Final[str] = "Item priority"
+BADGE_CORE: Final[str] = "★ core"
+LABEL_COMPONENTS_INCLUDED: Final[str] = "Included components"
+LABEL_COMPONENTS_MISSING: Final[str] = "Missing components"
+LABEL_COMPONENTS_LEFTOVER: Final[str] = "Leftover components"
+SECTION_LEGEND: Final[str] = "Legend"
+LEGEND_HAVE: Final[str] = "have"
+LEGEND_MISSING: Final[str] = "missing"
+SECTION_COMPONENTS_COVERAGE: Final[str] = "Components coverage"
 
 # ---------------------------------------------------------------------------
 # Buttons / actions
@@ -82,6 +130,8 @@ TITLE_NOTES: Final[str] = "Notes & banners"
 BTN_FORCE: Final[str] = "Force"
 BTN_OPEN_GUIDE: Final[str] = "Open guide"
 BTN_OPEN_VIDEO: Final[str] = "Open video"
+BTN_INC: Final[str] = "+"
+BTN_DEC: Final[str] = "−"
 
 # ---------------------------------------------------------------------------
 # Banners & icons
@@ -91,6 +141,10 @@ SEVERITY_EMOJI: Final[dict[str, str]] = {
     "warning": "⚠️",
     "critical": "🛑",
 }
+
+
+HINT_CLICK_TO_ADD: Final[str] = "Click to add +1; click an owned item to remove."
+HINT_CHAMPIONS_ADD_ONLY: Final[str] = "Click to add; remove champions in the main summary."
 
 
 # ---------------------------------------------------------------------------

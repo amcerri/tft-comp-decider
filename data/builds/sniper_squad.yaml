@@ -3,17 +3,23 @@
 
 id: sniper_squad
 name: "Sniper Squad"
-tier: "A"
-tier_rank: 1
+tier: "S"
+tier_rank: 2
 patch: "15.4"
 
 core_units:
+  - name: "Malphite"
+    star_goal: 3
+    required: True
   - name: "Jhin"
-    star_goal: 2
+    star_goal: 3
     required: true
   - name: "Sivir"
+    star_goal: 3
+    required: True
+  - name: "Jinx"
     star_goal: 2
-    required: false
+    required: True
 
 early_comp:
   - "Gnar"
@@ -25,7 +31,9 @@ mid_comp:
   - "Gnar"
   - "Kennen"
   - "Sivir"
+  - "Malphite"
   - "Jhin"
+  - "Neeko"
 
 late_comp:
   - "Gnar"
@@ -40,13 +48,14 @@ late_comp:
 item_priority_components:
   - "Chain Vest"
   - "Negatron Cloak"
+  - "Recurve Bow"
   - "Tear of the Goddess"
   - "Giant's Belt"
 
 bis_items:
-  "Jhin": ["Infinity Edge", "Last Whisper", "Giant Slayer"]
-  "Sivir": ["Statikk Shiv", "Guinsoo's Rageblade"]
-  "Malphite": ["Bramble Vest", "Gargoyle Stoneplate", "Warmog's Armor"]
+  "Jhin": ["Infinity Edge", "Deathblade", "Striker's Flail"]
+  "Malphite": ["Gargoyle Stoneplate", "Bramble Vest", "Spirit Visage"]
+  "Jinx": ["Guinsoo's Rageblade", "Kraken's Fury", "Last Whisper"]
 
 links:
   - label: "Guide (example)"

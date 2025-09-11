@@ -29,6 +29,8 @@ from typing import Final
 
 import pytest
 
+from tft_decider.data.catalog import available_champions
+
 from tft_decider.core.models import Inventory
 from tft_decider.core.scoring import ScoreBreakdown, score_build
 from tft_decider.core.notes import evaluate_notes
@@ -67,7 +69,7 @@ def test_catalog_has_components(catalog) -> None:
     """Ensure the catalog exposes at least the 8 base components."""
 
     assert len(catalog.items_components) >= 8
-    assert len(catalog.champions) > 0
+    assert len(available_champions(catalog)) > 0
 
 
 @pytest.mark.parametrize("build_id", ["double_trouble_fan_service", "sniper_squad"])  # type: ignore[misc]

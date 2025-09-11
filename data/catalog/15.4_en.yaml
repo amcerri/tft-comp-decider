@@ -7,21 +7,203 @@
 patch: "15.4"
 language: "en"
 
-champions:
-  # Sample subset (expand as needed)
-  - Xayah
-  - Rakan
-  - Janna
-  - Neeko
-  - Yasuo
-  - K'Sante
-  - Gnar
-  - Kennen
-  - Malphite
-  - Sivir
-  - Jhin
-  - Jinx
-  - Shen
+# Mtadata used by the UI for filters (cost/traits)
+champions_index:
+  - name: Aatrox
+    cost: 1
+    traits: [Mighty Mech, Juggernaut, Heavyweight]
+  - name: Ezreal
+    cost: 1
+    traits: [Battle Academia, Prodigy]
+  - name: Garen
+    cost: 1
+    traits: [Battle Academia, Bastion]
+  - name: Gnar
+    cost: 1
+    traits: [Luchador, Sniper]
+  - name: Kalista
+    cost: 1
+    traits: [Soul Fighter, Executioner]
+  - name: Kayle
+    cost: 1
+    traits: [Wraith, Duelist]
+  - name: Kennen
+    cost: 1
+    traits: [Supreme Cells, Protector, Sorcerer]
+  - name: Lucian
+    cost: 1
+    traits: [Mighty Mech, Sorcerer]
+  - name: Malphite
+    cost: 1
+    traits: [The Crew, Protector]
+  - name: Naafiri
+    cost: 1
+    traits: [Soul Fighter, Juggernaut]
+  - name: Rell
+    cost: 1
+    traits: [Star Guardian, Bastion]
+  - name: Sivir
+    cost: 1
+    traits: [The Crew, Sniper]
+  - name: Syndra
+    cost: 1
+    traits: [Crystal Gambit, Star Guardian, Prodigy]
+  - name: Zac
+    cost: 1
+    traits: [Wriath, Heavyweight]
+  - name: Dr. Mundo
+    cost: 2
+    traits: [Luchador, Juggernaut]
+  - name: Gangplank
+    cost: 2
+    traits: [Mighty Mech, Duelist]
+  - name: Janna
+    cost: 2
+    traits: [Crystal Gambit, Protector, Strategist]
+  - name: Jhin
+    cost: 2
+    traits: [Wraith, Sniper]
+  - name: Kai'Sa
+    cost: 2
+    traits: [Supreme Cells, Duelist]
+  - name: Katarina
+    cost: 2
+    traits: [Battle Academia, Executioner]
+  - name: Kobuko
+    cost: 2
+    traits: [Mentor, Heavyweight]
+  - name: Lux
+    cost: 2
+    traits: [Soul Fighter, Sorcerer]
+  - name: Rakan
+    cost: 2
+    traits: [Battle Academia, Protector]
+  - name: Shen
+    cost: 2
+    traits: [The Crew, Bastion, Edgelord]
+  - name: Vi
+    cost: 2
+    traits: [Crystal Gambit, Juggernaut]
+  - name: Xayah
+    cost: 2
+    traits: [Star Guardian, Edgelord]
+  - name: Xin Zhao
+    cost: 2
+    traits: [Soul Fighter, Bastion]
+  - name: Ahri
+    cost: 3
+    traits: [Star Guardian, Sorcerer]
+  - name: Caitlyn
+    cost: 3
+    traits: [Battle Academia, Sniper]
+  - name: Darius
+    cost: 3
+    traits: [Supreme Cells, Heavyweight]
+  - name: Jayce
+    cost: 3
+    traits: [Battle Academia, Heavyweight]
+  - name: Kog'Maw
+    cost: 3
+    traits: [Monster Trainer]
+  - name: Lulu
+    cost: 3
+    traits: [Monster Trainer]
+  - name: Malzahar
+    cost: 3
+    traits: [Wriath, Prodigy]
+  - name: Neeko
+    cost: 3
+    traits: [Star Guardian, Protector]
+  - name: Rammus
+    cost: 3
+    traits: [Monster Trainer]
+  - name: Senna
+    cost: 3
+    traits: [Might Mech, Executioner]
+  - name: Smolder
+    cost: 3
+    traits: [Monster Trainer]
+  - name: Swain
+    cost: 3
+    traits: [Crystal Gambit, Bastion, Sorcerer]
+  - name: Udyr
+    cost: 3
+    traits: [Mentor, Juggernaut, Duelist]
+  - name: Viego
+    cost: 3
+    traits: [Soul Fighter, Duelist]
+  - name: Yasuo
+    cost: 3
+    traits: [Mentor, Edgelord]
+  - name: Ziggs
+    cost: 3
+    traits: [The Crew, Strategist]
+  - name: Akali
+    cost: 4
+    traits: [Supreme Cells, Executioner]
+  - name: Ashe
+    cost: 4
+    traits: [Crystal Gambit, Duelist]
+  - name: Jarvan IV
+    cost: 4
+    traits: [Mighty Mech, Strategist]
+  - name: Jinx
+    cost: 4
+    traits: [Star Guardian, Sniper]
+  - name: Karma
+    cost: 4
+    traits: [Mighty Mech, Sorcerer]
+  - name: K'Sante
+    cost: 4
+    traits: [Wraith, Protector]
+  - name: Leona
+    cost: 4
+    traits: [Battle Academia, Bastion]
+  - name: Poppy
+    cost: 4
+    traits: [Star Guardian, Heavyweight]
+  - name: Ryze
+    cost: 4
+    traits: [Mentor, Executioner, Strategist]
+  - name: Samira
+    cost: 4
+    traits: [Soul Guardian, Edgelord]
+  - name: Sett
+    cost: 4
+    traits: [Soul Fighter, Juggernaut]
+  - name: Volibear
+    cost: 4
+    traits: [Luchador, Edgelord]
+  - name: Yuumi
+    cost: 4
+    traits: [Battle Academia, Prodigy]
+  - name: Braum
+    cost: 5
+    traits: [The Champ, Luchador, Bastion]
+  - name: Ekko
+    cost: 5
+    traits: [Prodigy, Sorcerer, Strategist]
+  - name: Gwen
+    cost: 5
+    traits: [Soul Fighter, Sorcerer]
+  - name: Lee Sin
+    cost: 5
+    traits: [Stance Master, Duelist, Juggernaut, Executioner]
+  - name: Seraphine
+    cost: 5
+    traits: [Star Guardian, Prodigy]
+  - name: Twisted Fate
+    cost: 5
+    traits: [Rogue Captain, The Crew]
+  - name: Varus
+    cost: 5
+    traits: [Wraith, Sniper]
+  - name: Yone
+    cost: 5
+    traits: [Mighty Mech, Edgelord]
+  - name: Zyra
+    cost: 5
+    traits: [Crystal Gambit, Rosemother]
 
 items_components:
   # The 8 base components
@@ -42,8 +224,6 @@ items_completed:
     components: [Recurve Bow, Needlessly Large Rod]
   - name: Last Whisper
     components: [Recurve Bow, Sparring Gloves]
-  - name: Rapid Firecannon
-    components: [Recurve Bow, Recurve Bow]
   - name: Bloodthirster
     components: [B. F. Sword, Negatron Cloak]
   - name: Spear of Shojin
@@ -54,8 +234,6 @@ items_completed:
     components: [Tear of the Goddess, Sparring Gloves]
   - name: Blue Buff
     components: [Tear of the Goddess, Tear of the Goddess]
-  - name: Statikk Shiv
-    components: [Recurve Bow, Tear of the Goddess]
   - name: Rabadon's Deathcap
     components: [Needlessly Large Rod, Needlessly Large Rod]
   - name: Hextech Gunblade
@@ -74,8 +252,6 @@ items_completed:
     components: [Chain Vest, Giant's Belt]
   - name: Warmog's Armor
     components: [Giant's Belt, Giant's Belt]
-  - name: Runaan's Hurricane
-    components: [Recurve Bow, Negatron Cloak]
   - name: Titan's Resolve
     components: [Chain Vest, Recurve Bow]
   - name: Quicksilver
@@ -83,15 +259,58 @@ items_completed:
 
 augments:
   # Augments are used only for notes/banners; they do not affect the score
-  - Double Trouble II
-  - Double Trouble III
-  - Jeweled Lotus
-  - Thrill of the Hunt
+  - Double Trouble
 
 traits:
-  - name: Sniper
+  - name: Bastion
     breakpoints: [2, 4, 6]
+  - name: Executioner
+    breakpoints: [2, 3, 4, 5]
   - name: Duelist
+    breakpoints: [2, 4, 6]
+  - name: Edgelord
+    breakpoints: [2, 4, 6]
+  - name: Heavyweight
+    breakpoints: [2, 4, 6]
+  - name: Juggernaut
+    breakpoints: [2, 4, 6]
+  - name: Prodigy
+    breakpoints: [2, 3, 4, 5]
+  - name: Protector
+    breakpoints: [2, 4, 6]
+  - name: Sniper
+    breakpoints: [2, 3, 4, 5]
+  - name: Sorcerer
+    breakpoints: [2, 4, 6]
+  - name: Strategist
+    breakpoints: [2, 3, 4, 5]
+  - name: Battle Academia
+    breakpoints: [3, 5, 7]
+  - name: Rogue Captain
+    breakpoints: [1]
+  - name: Stance Master
+    breakpoints: [1]
+  - name: The Champ
+    breakpoints: [1]
+  - name: Wraith
+    breakpoints: [2, 4, 6]
+  - name: Crystal Gambit
+    breakpoints: [3, 5, 7]
+  - name: Luchador
+    breakpoints: [2, 4]
+  - name: Monster Trainer
+    breakpoints: [1]
+  - name: Mentor
+    breakpoints: [1, 4]
+  - name: Rosemother
+    breakpoints: [1]
+  - name: Mighty Mech
+    breakpoints: [3, 5, 7]
+  - name: Soul Fighter
     breakpoints: [2, 4, 6, 8]
   - name: Star Guardian
-    breakpoints: [3, 5, 7]
+    breakpoints: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - name: Supreme cells
+    breakpoints: [2, 3, 4]
+  - name: The Crew
+    breakpoints: [2]

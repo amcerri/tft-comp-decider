@@ -69,6 +69,9 @@ class AssignmentResult:
         matches: Pairs of ``(index, component_name)`` matched in order.
         missing: Priority components that could not be satisfied (in order).
         remaining: Remaining components after assignment.
+        included_components: Derived list of matched component names (priority order).
+        missing_components: Alias for "missing" (UI-friendly name).
+        leftover_components: Alias for "remaining" (UI-friendly name).
     """
 
     matched: int
@@ -86,6 +89,33 @@ class AssignmentResult:
         """
 
         return self.matched / max(self.total, 1)
+
+    @property
+    def included_components(self) -> list[ComponentName]:
+        """Return matched component names in the priority order.
+
+        Useful for UI display to list which components were actually used.
+        """
+
+        return [name for _, name in self.matches]
+
+    @property
+    def missing_components(self) -> list[ComponentName]:
+        """Return missing component names (alias for ``missing``).
+
+        Provided for UI readability without changing the data container shape.
+        """
+
+        return list(self.missing)
+
+    @property
+    def leftover_components(self) -> dict[ComponentName, int]:
+        """Return remaining components (alias for ``remaining``).
+
+        Leftovers correspond to inventory not consumed by the assignment pass.
+        """
+
+        return dict(self.remaining)
 
 
 @dataclass(slots=True)

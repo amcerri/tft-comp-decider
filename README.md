@@ -1,24 +1,19 @@
-# TFT Comp Decider
+<file name=0 path=/Users/amcerri/Inbox (Local)/tft-comp-decider/README.md># TFT Comp Decider
 
-A stage‑aware **Teamfight Tactics** composition decider with a transparent scoring engine and a simple Streamlit UI.
-
----
-
-- [TFT Comp Decider](#tft-comp-decider)
-  - [Quickstart](#quickstart)
-  - [Overview](#overview)
-  - [Roadmap (Phases)](#roadmap-phases)
-  - [Architecture](#architecture)
-  - [Data \& Files](#data--files)
-    - [Catalog (per patch)](#catalog-per-patch)
-    - [Builds](#builds)
-  - [Scoring (high level)](#scoring-high-level)
-  - [UI (Streamlit)](#ui-streamlit)
-  - [Troubleshooting](#troubleshooting)
-  - [Development](#development)
-  - [Logging](#logging)
-  - [Contributing](#contributing)
-  - [License](#license)
+- [Quickstart](#quickstart)
+- [Overview](#overview)
+- [Roadmap (Phases)](#roadmap-phases)
+- [Architecture](#architecture)
+- [Data \& Files](#data--files)
+  - [Catalog (per patch)](#catalog-per-patch)
+  - [Builds](#builds)
+- [Scoring (high level)](#scoring-high-level)
+- [UI (Streamlit)](#ui-streamlit)
+- [Troubleshooting](#troubleshooting)
+- [Development](#development)
+- [Logging](#logging)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -101,13 +96,7 @@ src/
     ui/
       texts.py          # UI strings in English
       app.py            # Streamlit app
-
-data/
-  catalog/
-    15.4_en.yaml       # example patch catalog (editable)
-  builds/
-    double_trouble_fan_service.yaml
-    sniper_squad.yaml
+      widgets.py        # Reusable Streamlit widgets (counters, grids)
 ```
 
 ---
@@ -115,7 +104,7 @@ data/
 ## Data & Files
 
 ### Catalog (per patch)
-A minimal, versioned YAML file containing **champions**, **item components**, and optional **completed items**, **augments**, **traits** for a specific patch.
+A minimal, versioned YAML file containing **item components**, optional **completed items**, **augments**, **traits**, and a canonical **champions_index** (name, cost, traits) for a specific patch.
 
 - File: `data/catalog/<patch>_en.yaml` (e.g., `15.4_en.yaml`)
 - Loader: `src/tft_decider/data/catalog.py`
@@ -124,12 +113,23 @@ Example (excerpt):
 ```yaml
 patch: "15.4"
 language: "en"
-champions: ["Xayah", "Rakan", "Janna", "Neeko", "Yasuo", "K'Sante"]
+champions_index:
+  - name: Xayah
+    cost: 4
+    traits: [Sniper]
+  - name: Rakan
+    cost: 3
+    traits: [Star Guardian]
 items_components: [
   "B. F. Sword", "Recurve Bow", "Needlessly Large Rod", "Tear of the Goddess",
   "Chain Vest", "Negatron Cloak", "Giant's Belt", "Sparring Gloves"
 ]
 ```
+*Note:* The legacy 
+`champions: [...]`
+ list is optional and kept for backward compatibility; the UI derives champion names from 
+`champions_index`
+.
 
 ### Builds
 Each build is a YAML with **core units**, **early/mid/late comps**, **ordered item components**, optional **BiS per carry**, **links**, and **notes** with severities.
@@ -162,9 +162,11 @@ Run the app:
 streamlit run src/tft_decider/ui/app.py
 ```
 Key actions in the UI:
-- Select owned champions, item components, and augments (for notes only).
-- Choose the **stage** (e.g., `2-1`, `3-2`, `4-1`).
-- Toggle **Force build** to pin a build to the top.
+- Select **item components** in the **sidebar** (click **+1** in a 2‑column grid). Removal happens in the main summary.
+- Add **champions** from the **sidebar**, grouped by **Cost** (3 per row). Use the **Filters** expander (Costs/Traits) to narrow the list. Click to add (1★); removal happens in the main summary.
+- Use **Run options** (collapsed expander) for **Stage** and **Augments**.
+- Review **Your selection** in the main area: removable chips for **Owned champions** and a minus‑grid for **Owned components**.
+- (Optional) **Force build** to pin a composition at the top.
 - See **Top N** suggestions with scores, links to external guides, and **banners** with pivot suggestions.
 
 ---
