@@ -1,0 +1,68 @@
+
+
+# Double Trouble Fan Service — example build definition
+# Note: All strings are in English. Champion names and item names should match the catalog.
+
+id: double_trouble_fan_service
+name: "Double Trouble Fan Service"
+tier: "A"
+tier_rank: 2
+patch: "15.4"
+
+core_units:
+  - name: "Xayah"
+    star_goal: 3
+    required: true
+  - name: "Rakan"
+    star_goal: 3
+    required: true
+
+early_comp:
+  - "Malphite"
+  - "Rakan"
+  - "Shen"
+  - "Xayah"
+
+mid_comp:
+  - "Xayah"
+  - "Rakan"
+  - "Janna"
+  - "Neeko"
+
+late_comp:
+  - "Janna"
+  - "Xayah"
+  - "Rakan"
+  - "Neeko"
+  - "Yasuo"
+  - "K'Sante"
+
+item_priority_components:
+  - "Recurve Bow"
+  - "Needlessly Large Rod"
+  - "Recurve Bow"
+  - "Negatron Cloak"
+  - "Giant's Belt"
+  - "B. F. Sword"
+
+bis_items:
+  "Xayah": ["Guinsoo's Rageblade", "Last Whisper", "Giant Slayer"]
+  "Rakan": ["Protector's Vow", "Bramble Vest", "Dragon's Claw"]
+
+links:
+  - label: "Guide (example)"
+    url: "https://example.com/double-trouble-fan-service"
+  - label: "Video (example)"
+    url: "https://example.com/video-double-trouble"
+
+notes:
+  - severity: "critical"
+    text: "Without Double Trouble, consider pivoting to Sniper Squad."
+    triggers:
+      missing_augments_any: ["Double Trouble II", "Double Trouble III"]
+      stage_min: "3-2"
+      suggest_pivot_to: "sniper_squad"
+  - severity: "info"
+    text: "If you hit an early Bow, prioritize Guinsoo's on Xayah."
+    triggers:
+      have_components_any: ["Recurve Bow"]
