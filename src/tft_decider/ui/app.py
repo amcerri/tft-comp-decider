@@ -28,7 +28,8 @@ Usage
 
 from __future__ import annotations
 
-from collections import Counter
+import os
+from pathlib import Path
 from typing import Any, Final, Iterable
 
 import streamlit as st
@@ -47,11 +48,12 @@ from tft_decider.core.scoring import ScoreBreakdown, score_build
 from tft_decider.core.notes import evaluate_notes, EvaluatedNote
 from tft_decider.ui import texts
 
-# ---------------------------------------------------------------------------
 # UI configuration & constants
-# ---------------------------------------------------------------------------
-CATALOG_PATH: Final[str] = "data/catalog/15.4_en.yaml"
-BUILDS_DIR: Final[str] = "data/builds"
+REPO_ROOT: Final[Path] = Path(__file__).resolve().parents[3]
+DEFAULT_DATA_DIR: Final[Path] = REPO_ROOT / "data"
+DATA_DIR: Final[Path] = Path(os.environ.get("TFT_DATA_DIR", str(DEFAULT_DATA_DIR)))
+CATALOG_PATH: Final[Path] = DATA_DIR / "catalog" / "15.4_en.yaml"
+BUILDS_DIR: Final[Path] = DATA_DIR / "builds"
 DEFAULT_STAGE: Final[str] = "3-2"
 TOP_N_DEFAULT: Final[int] = 5
 
@@ -202,9 +204,13 @@ def run() -> None:
     st.set_page_config(page_title=texts.APP_TITLE, layout="wide")
     st.title(texts.APP_TITLE)
 
+    # Inform when using a custom data directory via environment variable
+    if os.environ.get("TFT_DATA_DIR"):
+        st.info(f"Using data directory from TFT_DATA_DIR: `{DATA_DIR}`")
+
     # Load catalog
     try:
-        catalog = load_catalog_from_yaml(CATALOG_PATH, thread_id=thread_id)
+        catalog = load_catalog_from_yaml(str(CATALOG_PATH), thread_id=thread_id)
         recipes = _recipes_from_catalog(catalog)
         log.info(
             "Catalog loaded in UI",
@@ -213,21 +219,21 @@ def run() -> None:
             recipes=len(recipes),
         )
     except Exception as exc:
-        st.error("Failed to load catalog. Check data/catalog." )
+        st.error(f"Failed to load catalog: {CATALOG_PATH}")
         log.error("Catalog load failure (UI)", error=str(exc))
         return
 
     # Load builds
     try:
-        builds = load_builds_from_dir(BUILDS_DIR, thread_id=thread_id)
+        builds = load_builds_from_dir(str(BUILDS_DIR), thread_id=thread_id)
         log.info("Builds loaded in UI", count=len(builds))
     except Exception as exc:
-        st.error("Failed to load builds. Check data/builds directory.")
+        st.error(f"Failed to load builds directory: {BUILDS_DIR}")
         log.error("Builds load failure (UI)", error=str(exc))
         return
 
     if not builds:
-        st.warning("No builds found under data/builds.")
+        st.warning(f"No builds found under: {BUILDS_DIR}")
         return
 
     # Sidebar — Inventory selections

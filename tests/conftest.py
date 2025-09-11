@@ -27,6 +27,8 @@ from __future__ import annotations
 
 from typing import Callable, Final, Optional
 
+from pathlib import Path
+
 import pytest
 
 from tft_decider.infra.logging import setup_logging, generate_thread_id
@@ -37,8 +39,9 @@ from tft_decider.core.models import Inventory
 # ---------------------------------------------------------------------------
 # Repository paths for data files used in tests
 # ---------------------------------------------------------------------------
-CATALOG_PATH: Final[str] = "data/catalog/15.4_en.yaml"
-BUILDS_DIR: Final[str] = "data/builds"
+REPO_ROOT: Final[Path] = Path(__file__).resolve().parents[1]
+CATALOG_PATH: Final[Path] = REPO_ROOT / "data" / "catalog" / "15.4_en.yaml"
+BUILDS_DIR: Final[Path] = REPO_ROOT / "data" / "builds"
 
 
 # ---------------------------------------------------------------------------
@@ -83,7 +86,7 @@ def logging_setup() -> None:
 def catalog(logging_setup: None, thread_id: str) -> Catalog:  # noqa: PT004 - session fixture
     """Load the patch-pinned catalog used by UI selectors and recipes."""
 
-    return load_catalog_from_yaml(CATALOG_PATH, thread_id=thread_id)
+    return load_catalog_from_yaml(str(CATALOG_PATH), thread_id=thread_id)
 
 
 @pytest.fixture(scope="session")
@@ -97,7 +100,7 @@ def recipes(catalog: Catalog) -> dict[str, list[str]]:
 def builds(logging_setup: None, thread_id: str) -> list:
     """Load all example builds from the repository data directory."""
 
-    return load_builds_from_dir(BUILDS_DIR, thread_id=thread_id)
+    return load_builds_from_dir(str(BUILDS_DIR), thread_id=thread_id)
 
 
 # ---------------------------------------------------------------------------
