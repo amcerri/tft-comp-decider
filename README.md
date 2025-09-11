@@ -2,7 +2,47 @@
 
 A stage‑aware **Teamfight Tactics** composition decider with a transparent scoring engine and a simple Streamlit UI.
 
-> Status: project scaffold and core plan in progress. The repository follows a phased roadmap (see below).
+---
+
+- [TFT Comp Decider](#tft-comp-decider)
+  - [Quickstart](#quickstart)
+  - [Overview](#overview)
+  - [Roadmap (Phases)](#roadmap-phases)
+  - [Architecture](#architecture)
+  - [Data \& Files](#data--files)
+    - [Catalog (per patch)](#catalog-per-patch)
+    - [Builds](#builds)
+  - [Scoring (high level)](#scoring-high-level)
+  - [UI (Streamlit)](#ui-streamlit)
+  - [Development](#development)
+  - [Logging](#logging)
+  - [Contributing](#contributing)
+  - [License](#license)
+
+---
+
+## Quickstart
+
+**Requirements:** Python 3.11+
+
+```bash
+# 1) Create a virtualenv and install (with dev tools)
+make install
+
+# 2) Run the app
+make run
+
+# 3) (Optional) Lint, type‑check, and test
+make check
+```
+
+If you prefer not to use `make`:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+streamlit run src/tft_decider/ui/app.py
+```
 
 ---
 
@@ -24,19 +64,19 @@ The scoring is **explainable** and designed to be tuned. It does not require scr
 
 ## Roadmap (Phases)
 
-1. **Foundation**: licensing, toolchain, scaffold (done)
-2. **Infra**: package init + structured logging helpers
-3. **Core contracts**: types & exceptions
-4. **Domain models**: Pydantic models for builds & inventory
-5. **Catalog**: YAML loader for champions and item components per patch
-6. **Builds loader**: YAML loader + two example builds
-7. **Engine (solver & scoring)**: item assignment + stage‑aware scoring (no augments in score)
-8. **Notes engine**: banners with triggers (e.g., missing augment → pivot suggestion)
-9. **UI**: Streamlit app (selection, stage, forced build, links, top‑N)
-10. **Tests**: smoke tests for scoring and notes
-11. **Dev UX (opt.)**: pre‑commit, Makefile, README updates
+- [x] **Foundation**: licensing, toolchain, scaffold
+- [x] **Infra**: package init + structured logging helpers
+- [x] **Core contracts**: types & exceptions
+- [x] **Domain models**: Pydantic models for builds & inventory
+- [x] **Catalog**: YAML loader for champions and item components per patch
+- [x] **Builds loader**: YAML loader + two example builds
+- [x] **Engine (solver & scoring)**: item assignment + stage‑aware scoring (no augments in score)
+- [x] **Notes engine**: banners with triggers (e.g., missing augment → pivot suggestion)
+- [x] **UI**: Streamlit app (selection, stage, forced build, links, top‑N)
+- [x] **Tests**: smoke tests for scoring and notes
+- [x] **Dev UX (opt.)**: Makefile, README updates
 
-> The README may reference components that land in later phases; commands below specify when something becomes available.
+> The roadmap will evolve. Contributions with additional builds/patches are welcome.
 
 ---
 
@@ -108,15 +148,13 @@ score = wC * ScoreChampions(stage) + wI * ScoreItems + wP * TierPrior
 
 - **Champions**: presence across early/mid/late comps with weight by current stage and core unit emphasis.
 - **Items**: ordered component priority matching + small bonus if BiS becomes feasible.
-- **Tier prior**: S/S/A/B/C/X plus rank within tier.
+- **Tier prior**: S/A/B/C/X plus rank within tier.
 
 > Augments do **not** influence the numeric score; they only trigger **notes/banners** (e.g., “missing Double Trouble → pivot to Sniper Squad”).
 
 ---
 
 ## UI (Streamlit)
-
-**Available after Phase 9.**
 
 Run the app:
 ```bash
@@ -130,33 +168,18 @@ Key actions in the UI:
 
 ---
 
-## Requirements
+## Development
 
-- Python **3.11+**
-- macOS/Linux/Windows supported (tested locally on macOS)
-
-Install (development):
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
-pip install -e ".[dev]"
-```
-
-Install (runtime only):
-```bash
-pip install -e "."
-```
-
-Run tests (after Phase 10):
-```bash
-pytest
-```
-
-Lint & format:
+Lint, type‑check, and tests:
 ```bash
 ruff check .
 black .
 mypy src
+pytest
+```
+Or simply:
+```bash
+make check
 ```
 
 ---
@@ -176,7 +199,7 @@ logger.bind(component="ui.app", event="score", thread_id=thread_id).info(
 
 ## Contributing
 
-This repository is public but aimed at personal, non-commercial use. Feel free to open issues and PRs. Please follow PEP 8/257, keep all strings in English, and adhere to the logging contract above.
+This repository is public but aimed at personal, non‑commercial use. Feel free to open issues and PRs. Please follow PEP 8/257, keep all strings in English, and adhere to the logging contract above.
 
 ---
 
