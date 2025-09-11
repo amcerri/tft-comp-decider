@@ -1,44 +1,20 @@
-<file name=0 path=/Users/amcerri/Inbox (Local)/tft-comp-decider/README.md># TFT Comp Decider
+# TFT Comp Decider
 
-- [Quickstart](#quickstart)
-- [Overview](#overview)
-- [Roadmap (Phases)](#roadmap-phases)
-- [Architecture](#architecture)
-- [Data \& Files](#data--files)
-  - [Catalog (per patch)](#catalog-per-patch)
-  - [Builds](#builds)
-- [Scoring (high level)](#scoring-high-level)
-- [UI (Streamlit)](#ui-streamlit)
-- [Troubleshooting](#troubleshooting)
-- [Development](#development)
-- [Logging](#logging)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## Quickstart
-
-**Requirements:** Python 3.11+
-
-```bash
-# 1) Create a virtualenv and install (with dev tools)
-make install
-
-# 2) Run the app
-make run
-
-# 3) (Optional) Lint, type‑check, and test
-make check
-```
-
-If you prefer not to use `make`:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -e ".[dev]"
-streamlit run src/tft_decider/ui/app.py
-```
+- [TFT Comp Decider](#tft-comp-decider)
+  - [Overview](#overview)
+  - [Roadmap (Phases)](#roadmap-phases)
+  - [Architecture](#architecture)
+  - [Data \& Files](#data--files)
+    - [Catalog (per patch)](#catalog-per-patch)
+    - [Builds](#builds)
+  - [Scoring (high level)](#scoring-high-level)
+  - [UI (Streamlit)](#ui-streamlit)
+  - [Quickstart](#quickstart)
+  - [Troubleshooting](#troubleshooting)
+  - [Development](#development)
+  - [Logging](#logging)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ---
 
@@ -109,27 +85,7 @@ A minimal, versioned YAML file containing **item components**, optional **comple
 - File: `data/catalog/<patch>_en.yaml` (e.g., `15.4_en.yaml`)
 - Loader: `src/tft_decider/data/catalog.py`
 
-Example (excerpt):
-```yaml
-patch: "15.4"
-language: "en"
-champions_index:
-  - name: Xayah
-    cost: 4
-    traits: [Sniper]
-  - name: Rakan
-    cost: 3
-    traits: [Star Guardian]
-items_components: [
-  "B. F. Sword", "Recurve Bow", "Needlessly Large Rod", "Tear of the Goddess",
-  "Chain Vest", "Negatron Cloak", "Giant's Belt", "Sparring Gloves"
-]
-```
-*Note:* The legacy 
-`champions: [...]`
- list is optional and kept for backward compatibility; the UI derives champion names from 
-`champions_index`
-.
+---
 
 ### Builds
 Each build is a YAML with **core units**, **early/mid/late comps**, **ordered item components**, optional **BiS per carry**, **links**, and **notes** with severities.
@@ -168,6 +124,31 @@ Key actions in the UI:
 - Review **Your selection** in the main area: removable chips for **Owned champions** and a minus‑grid for **Owned components**.
 - (Optional) **Force build** to pin a composition at the top.
 - See **Top N** suggestions with scores, links to external guides, and **banners** with pivot suggestions.
+
+---
+
+## Quickstart
+
+**Requirements:** Python 3.11+
+
+```bash
+# 1) Create a virtualenv and install (with dev tools)
+make install
+
+# 2) Run the app
+make run
+
+# 3) (Optional) Lint, type‑check, and test
+make check
+```
+
+If you prefer not to use `make`:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+streamlit run src/tft_decider/ui/app.py
+```
 
 ---
 
