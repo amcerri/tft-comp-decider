@@ -17,6 +17,8 @@ dependencies = [
   "PyYAML>=6.0.1,<7.0",
   "structlog>=24,<25",
   "streamlit>=1.33,<2.0",
+  "requests>=2.31,<3.0",
+  "pyjson5>=1.6,<2.0",
 ]
 
 [project.optional-dependencies]
