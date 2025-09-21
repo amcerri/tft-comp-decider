@@ -54,6 +54,9 @@ run: ## Run the Streamlit app
 	@echo "ℹ️  Using data dir: $(DATA_DIR) (override with TFT_DATA_DIR or make DATA_DIR=...)"
 	TFT_DATA_DIR="$(DATA_DIR)" "$(STREAMLIT)" run "$(APP)"
 
+update-builds: ## Regenerate build YAMLs from TFT Academy
+	"$(PY)" scripts/update_builds.py
+
 freeze: ## Export an environment lock file (requirements.txt)
 	$(PIP) freeze > requirements.txt
 	@echo "✅ requirements.txt updated"
